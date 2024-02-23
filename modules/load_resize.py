@@ -8,7 +8,7 @@ def convert_to_greyscale(image):
 
 
 
-def load_and_resize(image_path, new width = 100)
+def load_and_resize(image_path, new width = 100):
     image = Image.open(image_path)
     width, height = image.size
     aspect_ratio = height/width
@@ -23,7 +23,17 @@ def img_to_ascii(image, new width = 100):
     image = load_and_resize(image_path = image, new_width = 100)
     image = convert_to_greyscale(image)
 
+
     ascii str = map_pixels_to_ascii(image)
+    img_width = image.width
+    ascii_str_len = len(ascii_str)
+    ascii_img = ""
+
+    for i in range(0,ascii_str_len, img_width):
+        ascii_img += ascii_str[i:i+img_width] + "\n"
+
+    
+    return ascii_img
 
 
 
